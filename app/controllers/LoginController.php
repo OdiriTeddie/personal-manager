@@ -1,5 +1,6 @@
 <?php 
 
+require_once __DIR__ . '/../../config/database.php';
 
 $email = trim($_POST['email'] ?? '');
 $password = $_POST['password'] ?? '';
@@ -20,3 +21,14 @@ if(filter_var($email, FILTER_VALIDATE_EMAIL)){
 if(empty($password)){
     $errors[] = 'Password is required';
 }
+
+
+if(!empty($errors)){
+    $_SESSION['errors'] = $errors;
+
+    header('Location: /login');
+
+    exit;
+}
+
+var_dump($email, $password);

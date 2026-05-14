@@ -1,3 +1,12 @@
+<?php
+
+$errors = $_SESSION['errors'] ?? [];
+
+unset($_SESSION['errors']);
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,15 +33,25 @@
                     <p class="mt-3 text-sm text-slate-700">Enter your details to start using TaskFlow</p>
                 </div>
 
+                <?php if(!empty($errors)): ?>
+                    <div class="mb-4 rounded-md bg-red-100 p-2 mt-2 text-red-700">
+                        <ul class="list-disc pl-5">
+                            <?php foreach($errors as $error): ?>
+                                <li><?= htmlspecialchars($error) ?> </li>
+                            <?php endforeach; ?>
+                        </ul>
+                    </div>
+                <?php endif ?>
+
                 <form action="/register" method="post" class="mt-7 space-y-5">
                     <div>
-                        <label for="name" class="block text-sm font-medium text-slate-900">Full name</label>
+                        <label for="full_name" class="block text-sm font-medium text-slate-900">Full name</label>
                         <div class="mt-2 flex h-14 items-center gap-3 rounded-md border border-slate-300 bg-white px-4 text-slate-600 transition focus-within:border-[#4b3ee6] focus-within:ring-2 focus-within:ring-[#4b3ee6]/15">
                             <svg class="h-5 w-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                                 <path d="M20 21a8 8 0 0 0-16 0" />
                                 <circle cx="12" cy="7" r="4" />
                             </svg>
-                            <input id="name" name="name" type="text" autocomplete="name" placeholder="Jane Doe" class="h-full w-full border-0 bg-transparent text-sm text-slate-950 outline-none placeholder:text-slate-500">
+                            <input id="full_name" name="full_name" type="text" autocomplete="full_name" placeholder="Jane Doe" class="h-full w-full border-0 bg-transparent text-sm text-slate-950 outline-none placeholder:text-slate-500">
                         </div>
                     </div>
 
