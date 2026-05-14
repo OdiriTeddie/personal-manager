@@ -7,14 +7,11 @@ $password = $_POST['password'] ?? '';
 
 $errors = [];
 
-
-// var_dump($email, $password);
-
 if(empty($email)){
     $errors[] = 'Email is required';
 }
 
-if(filter_var($email, FILTER_VALIDATE_EMAIL)){
+if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
     $errors[] = 'Invalid email';
 }
 
@@ -31,4 +28,31 @@ if(!empty($errors)){
     exit;
 }
 
-var_dump($email, $password);
+$statement = $pdo->prepare("
+    SELECT * FROM users 
+    WHERE EMAIL = :email
+    LIMIT 1
+");
+
+$statement->execute([
+    'email' => $email
+]);
+
+$user = $statement->fetch(PDO::FETCH_ASSOC);
+
+if(!$user || !password_verify($password, $user['password'])){
+    $errors[] = 'Invalid login credentials';
+    $_SESSION['errors'] = $errors;
+    header('Location: /login');
+    exit;
+}
+
+
+$_SESSION['user'] = [
+    'id' => $user['id'],
+    'full_name' => $user['full_name'],
+    'email' => $user['email'],
+];
+
+header('Location: /dashboard');
+exit;

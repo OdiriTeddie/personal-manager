@@ -18,8 +18,9 @@ if($uri === '/'){
     require_once __DIR__ . '/../app/views/auth/login.php';
 }elseif($uri === '/login' && $_SERVER['REQUEST_METHOD'] === 'POST'){
  require_once __DIR__ . '/../app/controllers/LoginController.php';
-}
- else {
+} elseif($uri === '/dashboard'){
+    require_once __DIR__ . '/../app/views/dashboard.php';
+}else {
     http_response_code(404);
     echo '404 - Page not found';
 }

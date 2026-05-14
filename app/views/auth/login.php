@@ -1,3 +1,11 @@
+<?php 
+
+$errors = $_SESSION['errors'] ?? [];
+
+unset($_SESSION['errors']);
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,7 +30,7 @@
                     <p class="mt-3 text-sm text-slate-700">Enter your credentials to access TaskFlow</p>
                 </div>
 
-                <form action="#" method="post" class="mt-7 space-y-5">
+                <form action="/login" method="post" class="mt-7 space-y-5">
                     <div>
                         <label for="email" class="block text-sm font-medium text-slate-900">Email address</label>
                         <div class="mt-2 flex h-14 items-center gap-3 rounded-md border border-slate-300 bg-white px-4 text-slate-600 transition focus-within:border-[#4b3ee6] focus-within:ring-2 focus-within:ring-[#4b3ee6]/15">
