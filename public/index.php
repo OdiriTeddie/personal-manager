@@ -22,8 +22,22 @@ if($uri === '/'){
     require_once __DIR__ . '/../app/views/dashboard.php';
 } elseif($uri === '/dashboard/tasks'){
     require_once __DIR__ . '/../app/views/tasks/index.php';
+} elseif($uri === '/dashboard/tasks/create'){
+    require_once __DIR__ . '/../app/views/tasks/create.php';
+} elseif($uri === '/dashboard/tasks/edit'){
+    require_once __DIR__ . '/../app/views/tasks/edit.php';
+} elseif($uri === '/dashboard/tasks/delete'){
+    require_once __DIR__ . '/../app/views/tasks/delete.php';
 } elseif($uri === '/dashboard/notes'){
     require_once __DIR__ . '/../app/views/notes/index.php';
+} elseif($uri === '/dashboard/notes/create'){
+    require_once __DIR__ . '/../app/views/notes/create.php';
+} elseif($uri === '/dashboard/notes/edit'){
+    require_once __DIR__ . '/../app/views/notes/edit.php';
+} elseif($uri === '/dashboard/notes/show'){
+    require_once __DIR__ . '/../app/views/notes/show.php';
+} elseif($uri === '/dashboard/notes/delete'){
+    require_once __DIR__ . '/../app/views/notes/delete.php';
 } elseif($uri === '/dashboard/categories'){
     require_once __DIR__ . '/../app/views/categories/index.php';
 } elseif($uri === '/dashboard/settings'){

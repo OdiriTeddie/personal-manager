@@ -107,7 +107,7 @@ $fullName = $user['full_name'] ?? 'Alex Rivera';
                         <h1 class="text-3xl font-bold tracking-normal text-black">Tasks</h1>
                         <p class="mt-1 text-sm text-slate-700">Manage your deep work sessions and daily objectives.</p>
                     </div>
-                    <a href="#" class="inline-flex h-11 items-center justify-center gap-2 rounded-lg bg-[#3325d4] px-6 text-sm font-bold text-white shadow-sm transition hover:bg-[#2418bd]">
+                    <a href="/dashboard/tasks/create" class="inline-flex h-11 items-center justify-center gap-2 rounded-lg bg-[#3325d4] px-6 text-sm font-bold text-white shadow-sm transition hover:bg-[#2418bd]">
                         <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                             <path d="M12 5v14" />
                             <path d="M5 12h14" />
@@ -186,6 +186,7 @@ $fullName = $user['full_name'] ?? 'Alex Rivera';
                                     <th class="px-5 py-4">Priority</th>
                                     <th class="px-5 py-4">Due Date</th>
                                     <th class="px-5 py-4">Status</th>
+                                    <th class="px-5 py-4 text-right">Actions</th>
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-slate-300 text-sm">
@@ -217,6 +218,12 @@ $fullName = $user['full_name'] ?? 'Alex Rivera';
                                             In Progress
                                         </span>
                                     </td>
+                                    <td class="px-5 py-4">
+                                        <div class="flex justify-end gap-2">
+                                            <a href="/dashboard/tasks/edit" class="rounded-md border border-slate-300 px-3 py-1.5 text-xs font-medium text-slate-800 transition hover:bg-slate-50">Edit</a>
+                                            <a href="/dashboard/tasks/delete" class="rounded-md border border-red-200 px-3 py-1.5 text-xs font-medium text-red-600 transition hover:bg-red-50">Delete</a>
+                                        </div>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td class="px-5 py-4">
@@ -242,6 +249,12 @@ $fullName = $user['full_name'] ?? 'Alex Rivera';
                                             To Do
                                         </span>
                                     </td>
+                                    <td class="px-5 py-4">
+                                        <div class="flex justify-end gap-2">
+                                            <a href="/dashboard/tasks/edit" class="rounded-md border border-slate-300 px-3 py-1.5 text-xs font-medium text-slate-800 transition hover:bg-slate-50">Edit</a>
+                                            <a href="/dashboard/tasks/delete" class="rounded-md border border-red-200 px-3 py-1.5 text-xs font-medium text-red-600 transition hover:bg-red-50">Delete</a>
+                                        </div>
+                                    </td>
                                 </tr>
                                 <tr class="text-slate-500">
                                     <td class="px-5 py-4">
@@ -262,6 +275,12 @@ $fullName = $user['full_name'] ?? 'Alex Rivera';
                                             </svg>
                                             Completed
                                         </span>
+                                    </td>
+                                    <td class="px-5 py-4">
+                                        <div class="flex justify-end gap-2">
+                                            <a href="/dashboard/tasks/edit" class="rounded-md border border-slate-300 px-3 py-1.5 text-xs font-medium text-slate-800 transition hover:bg-slate-50">Edit</a>
+                                            <a href="/dashboard/tasks/delete" class="rounded-md border border-red-200 px-3 py-1.5 text-xs font-medium text-red-600 transition hover:bg-red-50">Delete</a>
+                                        </div>
                                     </td>
                                 </tr>
                             </tbody>

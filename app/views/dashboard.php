@@ -107,7 +107,7 @@ $user = $_SESSION['user'] ?? [];
                         <h1 class="text-3xl font-bold tracking-normal text-slate-950 sm:text-4xl">Good Morning, <?= $user['full_name'] ?></h1>
                         <p class="mt-3 text-lg text-slate-700">You have 6 pending tasks to tackle today.</p>
                     </div>
-                    <a href="#" class="inline-flex h-12 items-center justify-center gap-3 rounded-lg bg-[#3325d4] px-6 text-base font-bold text-white shadow-lg shadow-slate-300 transition hover:bg-[#2418bd]">
+                    <a href="/dashboard/tasks/create" class="inline-flex h-12 items-center justify-center gap-3 rounded-lg bg-[#3325d4] px-6 text-base font-bold text-white shadow-lg shadow-slate-300 transition hover:bg-[#2418bd]">
                         <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                             <path d="M12 5v14" />
                             <path d="M5 12h14" />

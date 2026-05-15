@@ -104,7 +104,7 @@ $fullName = $user['full_name'] ?? 'User';
                         <h1 class="text-3xl font-bold tracking-normal text-black">Knowledge Base</h1>
                         <p class="mt-1 text-sm text-slate-700">Capture your thoughts and organize your deep work.</p>
                     </div>
-                    <a href="#" class="inline-flex h-12 items-center justify-center gap-2 rounded-lg bg-[#3325d4] px-7 text-sm font-bold text-white shadow-sm transition hover:bg-[#2418bd]">
+                    <a href="/dashboard/notes/create" class="inline-flex h-12 items-center justify-center gap-2 rounded-lg bg-[#3325d4] px-7 text-sm font-bold text-white shadow-sm transition hover:bg-[#2418bd]">
                         <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                             <path d="M12 5v14" />
                             <path d="M5 12h14" />
@@ -117,15 +117,15 @@ $fullName = $user['full_name'] ?? 'User';
                     <article class="rounded-xl border border-slate-300 bg-white p-6 shadow-sm md:col-span-2">
                         <div class="flex items-start justify-between gap-4">
                             <span class="rounded bg-indigo-100 px-3 py-1 text-xs font-bold uppercase text-[#3325d4]">Project Alpha</span>
-                            <button type="button" class="grid h-8 w-8 place-items-center rounded-full text-slate-700 transition hover:bg-slate-100" aria-label="More note actions">
+                            <a href="/dashboard/notes/edit" class="grid h-8 w-8 place-items-center rounded-full text-slate-700 transition hover:bg-slate-100" aria-label="Edit note">
                                 <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                                     <circle cx="12" cy="5" r="1.5" />
                                     <circle cx="12" cy="12" r="1.5" />
                                     <circle cx="12" cy="19" r="1.5" />
                                 </svg>
-                            </button>
+                            </a>
                         </div>
-                        <h2 class="mt-5 text-2xl font-medium leading-snug text-black">Q4 Strategy Roadmap &amp; Architectural Decisions</h2>
+                        <a href="/dashboard/notes/show" class="mt-5 block text-2xl font-medium leading-snug text-black transition hover:text-[#160bd8]">Q4 Strategy Roadmap &amp; Architectural Decisions</a>
                         <p class="mt-4 text-sm leading-6 text-slate-800">We need to finalize the transition to the new microservices architecture by late November. The primary focus remains on reducing latency for the edge nodes while maintaining the current data consistency models...</p>
                         <div class="mt-7 flex flex-wrap items-center justify-between gap-4">
                             <div class="flex gap-2">
