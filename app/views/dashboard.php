@@ -30,14 +30,14 @@ $user = $_SESSION['user'] ?? [];
                     </svg>
                     Dashboard
                 </a>
-                <a href="#" class="flex items-center gap-4 rounded-lg px-5 py-3.5 text-base font-medium text-slate-800 transition hover:bg-white">
+                <a href="/dashboard/tasks" class="flex items-center gap-4 rounded-lg px-5 py-3.5 text-base font-medium text-slate-800 transition hover:bg-white">
                     <svg class="h-6 w-6 text-slate-700" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                         <circle cx="12" cy="12" r="9" />
                         <path d="m8.5 12 2.3 2.3 4.8-5" />
                     </svg>
                     Tasks
                 </a>
-                <a href="#" class="flex items-center gap-4 rounded-lg px-5 py-3.5 text-base font-medium text-slate-800 transition hover:bg-white">
+                <a href="/dashboard/notes" class="flex items-center gap-4 rounded-lg px-5 py-3.5 text-base font-medium text-slate-800 transition hover:bg-white">
                     <svg class="h-6 w-6 text-slate-700" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                         <path d="M6 3h9l4 4v14H6z" />
                         <path d="M15 3v5h5" />
@@ -45,13 +45,13 @@ $user = $_SESSION['user'] ?? [];
                     </svg>
                     Notes
                 </a>
-                <a href="#" class="flex items-center gap-4 rounded-lg px-5 py-3.5 text-base font-medium text-slate-800 transition hover:bg-white">
+                <a href="/dashboard/categories" class="flex items-center gap-4 rounded-lg px-5 py-3.5 text-base font-medium text-slate-800 transition hover:bg-white">
                     <svg class="h-6 w-6 text-slate-700" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                         <path d="M4 7h10l6 5-6 5H4z" />
                     </svg>
                     Categories
                 </a>
-                <a href="#" class="flex items-center gap-4 rounded-lg px-5 py-3.5 text-base font-medium text-slate-800 transition hover:bg-white">
+                <a href="/dashboard/settings" class="flex items-center gap-4 rounded-lg px-5 py-3.5 text-base font-medium text-slate-800 transition hover:bg-white">
                     <svg class="h-6 w-6 text-slate-700" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                         <path d="M12 15.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Z" />
                         <path d="M19.4 15a1.8 1.8 0 0 0 .36 1.98l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06A1.8 1.8 0 0 0 15 19.4a1.8 1.8 0 0 0-1 .6 1.8 1.8 0 0 0-.5 1.3V21a2 2 0 1 1-4 0v-.09A1.8 1.8 0 0 0 8 19.4a1.8 1.8 0 0 0-1.98.36l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.8 1.8 0 0 0 3.6 15a1.8 1.8 0 0 0-.6-1 1.8 1.8 0 0 0-1.3-.5H1.6a2 2 0 1 1 0-4h.09A1.8 1.8 0 0 0 3.6 8a1.8 1.8 0 0 0-.36-1.98l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.8 1.8 0 0 0 8 3.6a1.8 1.8 0 0 0 1-.6A1.8 1.8 0 0 0 9.5 1.7V1.6a2 2 0 1 1 4 0v.09A1.8 1.8 0 0 0 15 3.6a1.8 1.8 0 0 0 1.98-.36l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.8 1.8 0 0 0 19.4 8c.15.36.36.7.6 1 .34.34.8.53 1.3.5h.1a2 2 0 1 1 0 4h-.1A1.8 1.8 0 0 0 19.4 15Z" />
