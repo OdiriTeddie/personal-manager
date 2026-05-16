@@ -21,9 +21,11 @@ if($uri === '/'){
 } elseif($uri === '/dashboard'){
     require_once __DIR__ . '/../app/views/dashboard.php';
 } elseif($uri === '/dashboard/tasks'){
-    require_once __DIR__ . '/../app/views/tasks/index.php';
-} elseif($uri === '/dashboard/tasks/create'){
+    require_once __DIR__ . '/../app/controllers/tasks/TaskIndexController.php';
+} elseif($uri === '/dashboard/tasks/create' && $_SERVER['REQUEST_METHOD'] === 'GET'){
     require_once __DIR__ . '/../app/views/tasks/create.php';
+} elseif($uri === '/dashboard/tasks/create' && $_SERVER['REQUEST_METHOD'] === 'POST'){
+    require_once __DIR__ . '/../app/controllers/tasks/CreateTaskController.php';
 } elseif($uri === '/dashboard/tasks/edit'){
     require_once __DIR__ . '/../app/views/tasks/edit.php';
 } elseif($uri === '/dashboard/tasks/delete'){

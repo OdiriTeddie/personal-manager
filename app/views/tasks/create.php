@@ -4,7 +4,7 @@ $user = $_SESSION['user'] ?? [];
 $fullName = $user['full_name'] ?? 'Alex Rivera';
 $taskFormTitle = $taskFormTitle ?? 'Create New Task';
 $taskFormDescription = $taskFormDescription ?? 'Set your objectives and maintain your productive flow.';
-$taskFormAction = $taskFormAction ?? '#';
+$taskFormAction = $taskFormAction ?? '/dashboard/tasks/create';
 $taskFormButton = $taskFormButton ?? 'Create Task';
 $taskFormButtonIcon = $taskFormButtonIcon ?? 'plus';
 $taskTitleValue = $taskTitleValue ?? '';
@@ -120,7 +120,7 @@ $showDeleteAction = $showDeleteAction ?? false;
                         </a>
                     </div>
 
-                    <form action="<?= htmlspecialchars($taskFormAction) ?>" method="post" class="space-y-6 px-7 py-7">
+                    <form action="<?= htmlspecialchars($taskFormAction) ?>" method="POST" class="space-y-6 px-7 py-7">
                         <div>
                             <label for="title" class="block text-sm font-medium text-slate-900">Task Title</label>
                             <input id="title" name="title" type="text" value="<?= htmlspecialchars($taskTitleValue) ?>" placeholder="What needs to be done?" class="mt-2 h-11 w-full rounded-lg border border-slate-300 bg-white px-4 text-sm outline-none transition focus:border-[#4b3ee6] focus:ring-2 focus:ring-[#4b3ee6]/15">
@@ -210,19 +210,7 @@ $showDeleteAction = $showDeleteAction ?? false;
                 </section>
             </main>
 
-            <footer class="mx-auto mt-8 max-w-[980px] border-t border-slate-300 px-5 py-7 sm:px-7">
-                <div class="flex flex-col gap-5 text-xs text-slate-800 sm:flex-row sm:items-end sm:justify-between">
-                    <div>
-                        <a href="/" class="font-bold text-[#160bd8]">TaskFlow</a>
-                        <span class="ml-3">&copy; 2024 TaskFlow Productivity Suite.</span>
-                    </div>
-                    <div class="flex gap-7">
-                        <a href="#" class="transition hover:text-[#160bd8]">Privacy</a>
-                        <a href="#" class="transition hover:text-[#160bd8]">Terms</a>
-                        <a href="#" class="transition hover:text-[#160bd8]">Support</a>
-                    </div>
-                </div>
-            </footer>
+            <?php require_once __DIR__ .  '/../partials/dashboard-footer.php' ?>
         </div>
     </div>
 </body>

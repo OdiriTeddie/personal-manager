@@ -233,5 +233,5 @@
         </section>
     </main>
 
-<?php require_once 'partials/footer.php' ?>
+<?php require_once  'partials/footer.php' ?>
 
