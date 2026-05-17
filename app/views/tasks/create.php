@@ -1,7 +1,7 @@
 <?php
 
 $user = $_SESSION['user'] ?? [];
-$fullName = $user['full_name'] ?? 'Alex Rivera';
+$fullName = $user['full_name'] ?? 'User';
 $taskFormTitle = $taskFormTitle ?? 'Create New Task';
 $taskFormDescription = $taskFormDescription ?? 'Set your objectives and maintain your productive flow.';
 $taskFormAction = $taskFormAction ?? '/dashboard/tasks/create';
@@ -12,6 +12,12 @@ $taskDescriptionValue = $taskDescriptionValue ?? '';
 $taskDueDateValue = $taskDueDateValue ?? '';
 $taskCategoryValue = $taskCategoryValue ?? 'Marketing Campaign';
 $showDeleteAction = $showDeleteAction ?? false;
+$taskFormMethod = $taskFormMethod ?? '';
+
+$taskPriorityValue = $taskPriorityValue ?? 'medium';
+
+$priorityActiveClass = 'bg-white text-[#3325d4] shadow-sm';
+$priorityInactiveClass = 'text-slate-700 transition hover:bg-white';
 ?>
 
 <!DOCTYPE html>
@@ -121,6 +127,9 @@ $showDeleteAction = $showDeleteAction ?? false;
                     </div>
 
                     <form action="<?= htmlspecialchars($taskFormAction) ?>" method="POST" class="space-y-6 px-7 py-7">
+                        <?php if(!empty($taskFormMethod)): ?>
+                            <input type="hidden" name="_method" value="<?= htmlspecialchars($taskFormMethod) ?>" />
+                        <?php endif; ?>
                         <div>
                             <label for="title" class="block text-sm font-medium text-slate-900">Task Title</label>
                             <input id="title" name="title" type="text" value="<?= htmlspecialchars($taskTitleValue) ?>" placeholder="What needs to be done?" class="mt-2 h-11 w-full rounded-lg border border-slate-300 bg-white px-4 text-sm outline-none transition focus:border-[#4b3ee6] focus:ring-2 focus:ring-[#4b3ee6]/15">
@@ -135,18 +144,38 @@ $showDeleteAction = $showDeleteAction ?? false;
                             <div>
                                 <span class="block text-sm font-medium text-slate-900">Priority</span>
                                 <div class="mt-2 grid h-11 grid-cols-3 overflow-hidden rounded-lg border border-slate-300 bg-slate-100 p-0.5">
-                                    <label class="grid cursor-pointer place-items-center rounded-md text-xs font-medium text-slate-700 transition hover:bg-white">
-                                        <input type="radio" name="priority" value="low" class="sr-only">
-                                        Low
-                                    </label>
-                                    <label class="grid cursor-pointer place-items-center rounded-md bg-white text-xs font-medium text-[#3325d4] shadow-sm">
-                                        <input type="radio" name="priority" value="medium" checked class="sr-only">
-                                        Medium
-                                    </label>
-                                    <label class="grid cursor-pointer place-items-center rounded-md text-xs font-medium text-slate-700 transition hover:bg-white">
-                                        <input type="radio" name="priority" value="high" class="sr-only">
-                                        High
-                                    </label>
+                       <label class="grid cursor-pointer place-items-center rounded-md text-xs font-medium <?= $taskPriorityValue === 'low' ? $priorityActiveClass : $priorityInactiveClass ?>">
+                            <input
+                                type="radio"
+                                name="priority"
+                                value="low"
+                                <?= $taskPriorityValue === 'low' ? 'checked' : '' ?>
+                                class="sr-only"
+                            >
+                            Low
+                        </label>
+
+                        <label class="grid cursor-pointer place-items-center rounded-md text-xs font-medium <?= $taskPriorityValue === 'medium' ? $priorityActiveClass : $priorityInactiveClass ?>">
+                            <input
+                                type="radio"
+                                name="priority"
+                                value="medium"
+                                <?= $taskPriorityValue === 'medium' ? 'checked' : '' ?>
+                                class="sr-only"
+                            >
+                            Medium
+                        </label>
+
+                        <label class="grid cursor-pointer place-items-center rounded-md text-xs font-medium <?= $taskPriorityValue === 'high' ? $priorityActiveClass : $priorityInactiveClass ?>">
+                            <input
+                                type="radio"
+                                name="priority"
+                                value="high"
+                                <?= $taskPriorityValue === 'high' ? 'checked' : '' ?>
+                                class="sr-only"
+                            >
+                            High
+                        </label>
                                 </div>
                             </div>
 

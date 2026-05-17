@@ -7,13 +7,15 @@ require_once __DIR__  .  '/../../controllers/tasks/EditTaskController.php';
 
 $taskFormTitle = 'Edit Task';
 $taskFormDescription = 'Update task details, timing, and project context.';
-$taskFormAction = '#';
+$taskFormAction = "/dashboard/tasks/$taskId/edit";
 $taskFormButton = 'Save Changes';
 $taskFormButtonIcon = 'save';
 $taskTitleValue =  $task['title'];
 $taskDescriptionValue =  $task['description'];
-$taskDueDateValue = '2024-10-24';
+$taskDueDateValue = $task['due_date'];
 $taskCategoryValue = 'Development';
 $showDeleteAction = true;
+$taskPriorityValue = $task['priority']; 
+$taskFormMethod = 'PATCH';
 
 require __DIR__ . '/create.php';

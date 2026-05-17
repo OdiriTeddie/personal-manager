@@ -7,6 +7,12 @@ session_start();
 
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
+$requestMethod = $_SERVER['REQUEST_METHOD'];
+
+if($requestMethod === 'POST' && isset($_POST['_method'])){
+    $requestMethod = strtoupper($_POST['_method']);
+}
+
 
 if($uri === '/'){
     require_once __DIR__ . '/../app/views/home.php';
@@ -26,11 +32,18 @@ if($uri === '/'){
     require_once __DIR__ . '/../app/views/tasks/create.php';
 } elseif($uri === '/dashboard/tasks/create' && $_SERVER['REQUEST_METHOD'] === 'POST'){
     require_once __DIR__ . '/../app/controllers/tasks/CreateTaskController.php';
-} elseif(preg_match('#^/dashboard/tasks/(\d+)/edit$#', $uri, $matches)){
+} elseif(preg_match('#^/dashboard/tasks/(\d+)/edit$#', $uri, $matches) && $_SERVER['REQUEST_METHOD'] === 'GET'){
     $taskId = $matches[1];
     require_once __DIR__ . '/../app/views/tasks/edit.php';
-} elseif($uri === '/dashboard/tasks/delete'){
-    require_once __DIR__ . '/../app/views/tasks/delete.php';
+} elseif(preg_match('#^/dashboard/tasks/(\d+)/edit$#', $uri, $matches) && $requestMethod === 'PATCH'){
+    $taskId = $matches[1];
+    require_once __DIR__ . '/../app/controllers/tasks/UpdateTaskController.php';
+}  elseif(preg_match('#^/dashboard/tasks/(\d+)/delete$#', $uri, $matches) && $_SERVER['REQUEST_METHOD'] === 'GET'){
+    $taskId = $matches[1];
+    require_once __DIR__ . '/../app/controllers/tasks/DeleteTaskViewController.php';
+}elseif(preg_match('#^/dashboard/tasks/(\d+)/delete$#', $uri, $matches) && $requestMethod === 'DELETE'){
+    $taskId = $matches[1];
+    require_once __DIR__ . '/../app/controllers/tasks/DeleteTaskController.php';
 } elseif($uri === '/dashboard/notes'){
     require_once __DIR__ . '/../app/views/notes/index.php';
 } elseif($uri === '/dashboard/notes/create'){

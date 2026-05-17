@@ -1,7 +1,8 @@
 <?php
 
 $user = $_SESSION['user'] ?? [];
-$fullName = $user['full_name'] ?? 'Alex Rivera';
+$fullName = $user['full_name'] ?? 'User';
+$task = $task;
 ?>
 
 <!DOCTYPE html>
@@ -69,13 +70,15 @@ $fullName = $user['full_name'] ?? 'Alex Rivera';
 
                     <div class="px-7 py-6">
                         <div class="rounded-lg border border-slate-300 bg-slate-50 p-5">
-                            <p class="text-sm font-bold text-slate-500">Task</p>
-                            <h2 class="mt-2 text-lg font-bold text-black">Redesign system architecture</h2>
-                            <p class="mt-2 text-sm text-slate-700">Project Phoenix • Backend • Due Oct 24, 2024</p>
+                            <p class="text-sm font-bold text-slate-500"> <?= $task['title'] ?> </p>
+                            <h2 class="mt-2 text-lg font-bold text-black"> <?= $task['description'] ?> </h2>
+                            <p class="mt-2 text-sm text-slate-700">Project Phoenix • Backend • Due  <?= $task['due_date'] ?> </p>
+                            <!-- <p class="mt-2 text-sm text-slate-700">Project Phoenix • Backend • Due Oct 24, 2024</p> -->
                         </div>
 
-                        <form action="#" method="post" class="mt-7 flex flex-col gap-3 border-t border-slate-300 pt-6 sm:flex-row sm:justify-end">
-                            <a href="/dashboard/tasks/edit" class="inline-flex h-11 items-center justify-center rounded-lg border border-slate-300 bg-white px-7 text-sm font-medium text-slate-900 transition hover:bg-slate-50">Cancel</a>
+                        <form action="/dashboard/tasks/<?= $task['id'] ?>/delete" method="POST" class="mt-7 flex flex-col gap-3 border-t border-slate-300 pt-6 sm:flex-row sm:justify-end">
+                            <input name="_method" type="hidden" value="DELETE" />
+                            <a href="/dashboard/tasks" class="inline-flex h-11 items-center justify-center rounded-lg border border-slate-300 bg-white px-7 text-sm font-medium text-slate-900 transition hover:bg-slate-50">Cancel</a>
                             <button type="submit" class="inline-flex h-11 items-center justify-center gap-2 rounded-lg bg-red-600 px-7 text-sm font-bold text-white transition hover:bg-red-700">
                                 <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                                     <path d="M3 6h18" />

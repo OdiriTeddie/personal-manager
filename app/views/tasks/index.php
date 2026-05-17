@@ -198,8 +198,8 @@ $tasks = $tasks ?? [];
                                             <div class="flex items-center gap-3">
                                                 <span class="h-2.5 w-2.5 rounded-full bg-[#3325d4]"></span>
                                                 <div>
-                                                    <p class="font-bold text-black"><?= $task['title'] ?></p>
-                                                    <p class="mt-0.5 text-xs text-slate-700"><?= $task['description'] ?></p>
+                                                    <p class="font-bold text-black"><?= ucfirst($task['title']) ?></p>
+                                                    <p class="mt-0.5 text-xs text-slate-700"><?= ucfirst($task['description']) ?></p>
                                                 </div>
                                             </div>
                                         </td>
@@ -218,75 +218,18 @@ $tasks = $tasks ?? [];
                                                     <path d="M2 12h5" />
                                                     <path d="M17 12h5" />
                                                 </svg>
-                                                <?= $task['status'] ?>
+                                                <?= ucfirst($task['status']) ?>
                                             </span>
                                         </td>
                                         <td class="px-5 py-4">
                                             <div class="flex justify-end gap-2">
                                                 <a href="/dashboard/tasks/<?= $task['id'] ?>/edit" class="rounded-md border border-slate-300 px-3 py-1.5 text-xs font-medium text-slate-800 transition hover:bg-slate-50">Edit</a>
-                                                <a href="/dashboard/tasks/delete" class="rounded-md border border-red-200 px-3 py-1.5 text-xs font-medium text-red-600 transition hover:bg-red-50">Delete</a>
+                                                <a href="/dashboard/tasks/<?= $task['id'] ?>/delete" class="rounded-md border border-red-200 px-3 py-1.5 text-xs font-medium text-red-600 transition hover:bg-red-50">Delete</a>
                                             </div>
                                         </td>
                                     </tr>
                                 <?php endforeach ?>
-                                <!-- <tr>
-                                    <td class="px-5 py-4">
-                                        <div class="flex items-center gap-3">
-                                            <span class="h-2.5 w-2.5 rounded-full bg-slate-500"></span>
-                                            <div>
-                                                <p class="font-bold text-black">Prepare Q4 roadmap presentation</p>
-                                                <p class="mt-0.5 text-xs text-slate-700">Internal • Strategy</p>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="px-5 py-4"><span class="rounded-full bg-indigo-100 px-2.5 py-1 text-xs font-bold text-indigo-700">Medium</span></td>
-                                    <td class="px-5 py-4">
-                                        <p class="text-slate-950">Oct 28, 2024</p>
-                                        <p class="mt-0.5 text-xs text-slate-700">In 4 days</p>
-                                    </td>
-                                    <td class="px-5 py-4">
-                                        <span class="inline-flex items-center gap-2 font-bold text-slate-950">
-                                            <svg class="h-4 w-4 text-slate-700" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                                                <circle cx="12" cy="12" r="9" />
-                                                <path d="M12 7v5l3 2" />
-                                            </svg>
-                                            To Do
-                                        </span>
-                                    </td>
-                                    <td class="px-5 py-4">
-                                        <div class="flex justify-end gap-2">
-                                            <a href="/dashboard/tasks/edit" class="rounded-md border border-slate-300 px-3 py-1.5 text-xs font-medium text-slate-800 transition hover:bg-slate-50">Edit</a>
-                                            <a href="/dashboard/tasks/delete" class="rounded-md border border-red-200 px-3 py-1.5 text-xs font-medium text-red-600 transition hover:bg-red-50">Delete</a>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr class="text-slate-500">
-                                    <td class="px-5 py-4">
-                                        <div class="flex items-center gap-3">
-                                            <span class="h-2.5 w-2.5 rounded-full bg-slate-500"></span>
-                                            <div>
-                                                <p class="font-medium line-through">Security audit - API endpoints</p>
-                                                <p class="mt-0.5 text-xs">Compliance • Security</p>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="px-5 py-4"><span class="rounded-full bg-slate-100 px-2.5 py-1 text-xs font-bold text-slate-500">Low</span></td>
-                                    <td class="px-5 py-4">Oct 20, 2024</td>
-                                    <td class="px-5 py-4">
-                                        <span class="inline-flex items-center gap-2 font-bold">
-                                            <svg class="h-4 w-4 text-slate-600" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                                                <path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm4.4 7.8-5.1 5.1a1 1 0 0 1-1.4 0l-2.3-2.3L9 11.2l1.6 1.6L15 8.4l1.4 1.4Z" />
-                                            </svg>
-                                            Completed
-                                        </span>
-                                    </td>
-                                    <td class="px-5 py-4">
-                                        <div class="flex justify-end gap-2">
-                                            <a href="/dashboard/tasks/edit" class="rounded-md border border-slate-300 px-3 py-1.5 text-xs font-medium text-slate-800 transition hover:bg-slate-50">Edit</a>
-                                            <a href="/dashboard/tasks/delete" class="rounded-md border border-red-200 px-3 py-1.5 text-xs font-medium text-red-600 transition hover:bg-red-50">Delete</a>
-                                        </div>
-                                    </td>
-                                </tr> -->
+                               
                             </tbody>
                         </table>
                     </div>
