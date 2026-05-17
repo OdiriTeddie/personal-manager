@@ -3,6 +3,7 @@
 $user = $_SESSION['user'] ?? [];
 $fullName = $user['full_name'] ?? 'Alex Rivera';
 $tasks = $tasks ?? [];
+
 ?>
 
 <!DOCTYPE html>
@@ -191,42 +192,44 @@ $tasks = $tasks ?? [];
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-slate-300 text-sm">
-                                <tr>
-                                    <td class="px-5 py-4">
-                                        <div class="flex items-center gap-3">
-                                            <span class="h-2.5 w-2.5 rounded-full bg-[#3325d4]"></span>
-                                            <div>
-                                                <p class="font-bold text-black">Redesign system architecture</p>
-                                                <p class="mt-0.5 text-xs text-slate-700">Project Phoenix • Backend</p>
+                                <?php foreach ($tasks as $task): ?>
+                                    <tr>
+                                        <td class="px-5 py-4">
+                                            <div class="flex items-center gap-3">
+                                                <span class="h-2.5 w-2.5 rounded-full bg-[#3325d4]"></span>
+                                                <div>
+                                                    <p class="font-bold text-black"><?= $task['title'] ?></p>
+                                                    <p class="mt-0.5 text-xs text-slate-700"><?= $task['description'] ?></p>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </td>
-                                    <td class="px-5 py-4"><span class="rounded-full bg-red-100 px-2.5 py-1 text-xs font-bold text-red-700">High</span></td>
-                                    <td class="px-5 py-4">
-                                        <p class="text-slate-950">Oct 24, 2024</p>
-                                        <p class="mt-0.5 text-xs font-medium text-red-600">Today</p>
-                                    </td>
-                                    <td class="px-5 py-4">
-                                        <span class="inline-flex items-center gap-2 font-bold text-slate-950">
-                                            <svg class="h-4 w-4 text-[#3325d4]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                                                <path d="M12 2v5" />
-                                                <path d="M12 17v5" />
-                                                <path d="m4.93 4.93 3.54 3.54" />
-                                                <path d="m15.53 15.53 3.54 3.54" />
-                                                <path d="M2 12h5" />
-                                                <path d="M17 12h5" />
-                                            </svg>
-                                            In Progress
-                                        </span>
-                                    </td>
-                                    <td class="px-5 py-4">
-                                        <div class="flex justify-end gap-2">
-                                            <a href="/dashboard/tasks/edit" class="rounded-md border border-slate-300 px-3 py-1.5 text-xs font-medium text-slate-800 transition hover:bg-slate-50">Edit</a>
-                                            <a href="/dashboard/tasks/delete" class="rounded-md border border-red-200 px-3 py-1.5 text-xs font-medium text-red-600 transition hover:bg-red-50">Delete</a>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
+                                        </td>
+                                        <td class="px-5 py-4"><span class="rounded-full bg-red-100 px-2.5 py-1 text-xs font-bold text-red-700"> <?= ucfirst($task['priority']) ?> </span></td>
+                                        <td class="px-5 py-4">
+                                            <p class="text-slate-950"><?= $task['due_date'] ?></p>
+                                            <!-- <p class="mt-0.5 text-xs font-medium text-red-600">Today</p> -->
+                                        </td>
+                                        <td class="px-5 py-4">
+                                            <span class="inline-flex items-center gap-2 font-bold text-slate-950">
+                                                <svg class="h-4 w-4 text-[#3325d4]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                                    <path d="M12 2v5" />
+                                                    <path d="M12 17v5" />
+                                                    <path d="m4.93 4.93 3.54 3.54" />
+                                                    <path d="m15.53 15.53 3.54 3.54" />
+                                                    <path d="M2 12h5" />
+                                                    <path d="M17 12h5" />
+                                                </svg>
+                                                <?= $task['status'] ?>
+                                            </span>
+                                        </td>
+                                        <td class="px-5 py-4">
+                                            <div class="flex justify-end gap-2">
+                                                <a href="/dashboard/tasks/<?= $task['id'] ?>/edit" class="rounded-md border border-slate-300 px-3 py-1.5 text-xs font-medium text-slate-800 transition hover:bg-slate-50">Edit</a>
+                                                <a href="/dashboard/tasks/delete" class="rounded-md border border-red-200 px-3 py-1.5 text-xs font-medium text-red-600 transition hover:bg-red-50">Delete</a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                <?php endforeach ?>
+                                <!-- <tr>
                                     <td class="px-5 py-4">
                                         <div class="flex items-center gap-3">
                                             <span class="h-2.5 w-2.5 rounded-full bg-slate-500"></span>
@@ -283,7 +286,7 @@ $tasks = $tasks ?? [];
                                             <a href="/dashboard/tasks/delete" class="rounded-md border border-red-200 px-3 py-1.5 text-xs font-medium text-red-600 transition hover:bg-red-50">Delete</a>
                                         </div>
                                     </td>
-                                </tr>
+                                </tr> -->
                             </tbody>
                         </table>
                     </div>

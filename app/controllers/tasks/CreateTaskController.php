@@ -43,7 +43,7 @@ $statement->execute([
     'priority' => $priority,
     'due_date' => $dueDate,
     'created_at' => $createdAt,
-    'user_id' => 2,
+    'user_id' => 1,
 ]);
 
 $_SESSION['success'] = 'Task created successfully';

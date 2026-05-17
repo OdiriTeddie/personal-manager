@@ -26,7 +26,8 @@ if($uri === '/'){
     require_once __DIR__ . '/../app/views/tasks/create.php';
 } elseif($uri === '/dashboard/tasks/create' && $_SERVER['REQUEST_METHOD'] === 'POST'){
     require_once __DIR__ . '/../app/controllers/tasks/CreateTaskController.php';
-} elseif($uri === '/dashboard/tasks/edit'){
+} elseif(preg_match('#^/dashboard/tasks/(\d+)/edit$#', $uri, $matches)){
+    $taskId = $matches[1];
     require_once __DIR__ . '/../app/views/tasks/edit.php';
 } elseif($uri === '/dashboard/tasks/delete'){
     require_once __DIR__ . '/../app/views/tasks/delete.php';
