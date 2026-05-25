@@ -46,10 +46,12 @@ if($uri === '/'){
     require_once __DIR__ . '/../app/controllers/tasks/DeleteTaskController.php';
 } elseif($uri === '/dashboard/notes'){
     require_once __DIR__ . '/../app/views/notes/index.php';
-} elseif($uri === '/dashboard/notes/create'){
+} elseif($uri === '/dashboard/notes/create' && $_SERVER['REQUEST_METHOD'] === 'GET'){
     require_once __DIR__ . '/../app/views/notes/create.php';
+} elseif($uri === '/dashboard/notes/create' && $_SERVER['REQUEST_METHOD']  === 'POST'){
+    require_once __DIR__ . '/../app/controllers/notes/CreateNoteController.php';
 } elseif($uri === '/dashboard/notes/edit'){
-    require_once __DIR__ . '/../app/views/notes/edit.php';
+    require_once __DIR__ . '/../app/views/notes/edit.php'; 
 } elseif($uri === '/dashboard/notes/show'){
     require_once __DIR__ . '/../app/views/notes/show.php';
 } elseif($uri === '/dashboard/notes/delete'){

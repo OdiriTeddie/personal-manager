@@ -129,7 +129,7 @@ $fullName = $user['full_name'] ?? 'Alex Rivera';
                         <span class="rounded-xl border border-slate-300 bg-white px-6 py-4 text-lg font-medium text-slate-800">Draft</span>
                     </div>
 
-                    <form action="#" method="post">
+                    <form action="/dashboard/notes/create" method="POST">
                         <div class="space-y-8 px-8 py-8">
                             <div>
                                 <label for="title" class="block text-lg font-medium text-black">Note Title</label>
