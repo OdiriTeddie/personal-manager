@@ -1,14 +1,21 @@
 {
   "name": "personal-manager",
   "version": "1.0.0",
-  "main": "index.js",
+  "description": "A plain PHP productivity app playground for learning routing, controllers, sessions, PDO, and Tailwind UI scaffolding.",
+  "private": false,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build:css": "tailwindcss -i ./resources/css/app.css -o ./public/assets/css/app.css",
+    "watch:css": "tailwindcss -i ./resources/css/app.css -o ./public/assets/css/app.css --watch"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
+  "keywords": [
+    "php",
+    "learning",
+    "playground",
+    "pdo",
+    "tailwindcss"
+  ],
+  "author": "Odiri",
+  "license": "MIT",
   "devDependencies": {
     "@tailwindcss/cli": "^4.3.0",
     "tailwindcss": "^4.3.0"

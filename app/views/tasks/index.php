@@ -2,7 +2,7 @@
 
 $user = $_SESSION['user'] ?? [];
 $fullName = $user['full_name'] ?? 'Alex Rivera';
-$tasks = $tasks ?? [];
+$tasks ??= [];
 
 ?>
 

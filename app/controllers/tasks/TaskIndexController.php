@@ -2,7 +2,7 @@
 
 require_once __DIR__ . '/../../../config/database.php';
 
-$userId = 1;
+$userId = 2;
 
 $statement = $pdo->prepare("
     SELECT *
