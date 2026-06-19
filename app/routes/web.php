@@ -8,6 +8,17 @@ if ($requestMethod === 'POST' && isset($_POST['_method'])) {
     $requestMethod = strtoupper($_POST['_method']);
 }
 
+$taskController = null;
+
+if (str_starts_with($uri, '/dashboard/tasks')) {
+    require_once dirname($appPath) . '/config/database.php';
+    require_once $appPath . '/services/TaskService.php';
+    require_once $appPath . '/controllers/TaskController.php';
+
+    $taskService = new TaskService($pdo);
+    $taskController = new TaskController($taskService, $appPath . '/views');
+}
+
 if ($uri === '/') {
     require_once $appPath . '/views/home.php';
 } elseif ($uri === '/register' && $requestMethod === 'GET') {
@@ -21,23 +32,19 @@ if ($uri === '/') {
 } elseif ($uri === '/dashboard') {
     require_once $appPath . '/views/dashboard.php';
 } elseif ($uri === '/dashboard/tasks') {
-    require_once $appPath . '/controllers/tasks/TaskIndexController.php';
+    $taskController->index();
 } elseif ($uri === '/dashboard/tasks/create' && $requestMethod === 'GET') {
-    require_once $appPath . '/views/tasks/create.php';
+    $taskController->create();
 } elseif ($uri === '/dashboard/tasks/create' && $requestMethod === 'POST') {
-    require_once $appPath . '/controllers/tasks/CreateTaskController.php';
+    $taskController->store();
 } elseif (preg_match('#^/dashboard/tasks/(\d+)/edit$#', $uri, $matches) && $requestMethod === 'GET') {
-    $taskId = $matches[1];
-    require_once $appPath . '/views/tasks/edit.php';
+    $taskController->edit((int) $matches[1]);
 } elseif (preg_match('#^/dashboard/tasks/(\d+)/edit$#', $uri, $matches) && $requestMethod === 'PATCH') {
-    $taskId = $matches[1];
-    require_once $appPath . '/controllers/tasks/UpdateTaskController.php';
+    $taskController->update((int) $matches[1]);
 } elseif (preg_match('#^/dashboard/tasks/(\d+)/delete$#', $uri, $matches) && $requestMethod === 'GET') {
-    $taskId = $matches[1];
-    require_once $appPath . '/controllers/tasks/DeleteTaskViewController.php';
+    $taskController->delete((int) $matches[1]);
 } elseif (preg_match('#^/dashboard/tasks/(\d+)/delete$#', $uri, $matches) && $requestMethod === 'DELETE') {
-    $taskId = $matches[1];
-    require_once $appPath . '/controllers/tasks/DeleteTaskController.php';
+    $taskController->destroy((int) $matches[1]);
 } elseif ($uri === '/dashboard/notes') {
     require_once $appPath . '/views/notes/index.php';
 } elseif ($uri === '/dashboard/notes/create' && $requestMethod === 'GET') {

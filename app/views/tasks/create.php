@@ -2,19 +2,22 @@
 
 $user = $_SESSION['user'] ?? [];
 $fullName = $user['full_name'] ?? 'User';
+$old = $_SESSION['old'] ?? [];
+unset($_SESSION['old']);
 $taskFormTitle = $taskFormTitle ?? 'Create New Task';
 $taskFormDescription = $taskFormDescription ?? 'Set your objectives and maintain your productive flow.';
 $taskFormAction = $taskFormAction ?? '/dashboard/tasks/create';
 $taskFormButton = $taskFormButton ?? 'Create Task';
 $taskFormButtonIcon = $taskFormButtonIcon ?? 'plus';
-$taskTitleValue = $taskTitleValue ?? '';
-$taskDescriptionValue = $taskDescriptionValue ?? '';
-$taskDueDateValue = $taskDueDateValue ?? '';
+$taskTitleValue = $old['title'] ?? $taskTitleValue ?? '';
+$taskDescriptionValue = $old['description'] ?? $taskDescriptionValue ?? '';
+$taskDueDateValue = $old['due_date'] ?? $taskDueDateValue ?? '';
 $taskCategoryValue = $taskCategoryValue ?? 'Marketing Campaign';
 $showDeleteAction = $showDeleteAction ?? false;
+$taskDeleteUrl = $taskDeleteUrl ?? null;
 $taskFormMethod = $taskFormMethod ?? '';
 
-$taskPriorityValue = $taskPriorityValue ?? 'medium';
+$taskPriorityValue = $old['priority'] ?? $taskPriorityValue ?? 'medium';
 
 $priorityActiveClass = 'bg-white text-[#3325d4] shadow-sm';
 $priorityInactiveClass = 'text-slate-700 transition hover:bg-white';
@@ -215,8 +218,8 @@ $priorityInactiveClass = 'text-slate-700 transition hover:bg-white';
                         </div>
 
                         <div class="flex flex-col gap-3 border-t border-slate-300 pt-6 sm:flex-row sm:items-center sm:justify-end">
-                            <?php if ($showDeleteAction): ?>
-                                <a href="/dashboard/tasks/delete" class="inline-flex h-11 items-center justify-center rounded-lg border border-red-600 bg-white px-7 text-sm font-medium text-red-600 transition hover:bg-red-50 sm:mr-auto">Delete Task</a>
+                            <?php if ($showDeleteAction && $taskDeleteUrl): ?>
+                                <a href="<?= htmlspecialchars($taskDeleteUrl) ?>" class="inline-flex h-11 items-center justify-center rounded-lg border border-red-600 bg-white px-7 text-sm font-medium text-red-600 transition hover:bg-red-50 sm:mr-auto">Delete Task</a>
                             <?php endif; ?>
                             <a href="/dashboard/tasks" class="inline-flex h-11 items-center justify-center rounded-lg border border-slate-300 bg-white px-7 text-sm font-medium text-slate-900 transition hover:bg-slate-50">Cancel</a>
                             <button type="submit" class="inline-flex h-11 items-center justify-center gap-2 rounded-lg bg-[#3325d4] px-7 text-sm font-bold text-white transition hover:bg-[#2418bd]">
