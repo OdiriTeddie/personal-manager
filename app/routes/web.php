@@ -12,10 +12,12 @@ $taskController = null;
 
 if (str_starts_with($uri, '/dashboard/tasks')) {
     require_once dirname($appPath) . '/config/database.php';
+    require_once $appPath . '/models/Task.php';
     require_once $appPath . '/services/TaskService.php';
     require_once $appPath . '/controllers/TaskController.php';
 
-    $taskService = new TaskService($pdo);
+    $taskModel = new Task($pdo);
+    $taskService = new TaskService($taskModel);
     $taskController = new TaskController($taskService, $appPath . '/views');
 }
 

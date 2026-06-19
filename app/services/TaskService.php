@@ -2,44 +2,18 @@
 
 class TaskService
 {
-    public function __construct(private PDO $pdo)
+    public function __construct(private Task $task)
     {
     }
 
     public function getAllForUser(int $userId): array
     {
-        $statement = $this->pdo->prepare("
-            SELECT *
-            FROM tasks
-            WHERE user_id = :user_id
-            ORDER BY created_at DESC
-        ");
-
-        $statement->execute([
-            'user_id' => $userId,
-        ]);
-
-        return $statement->fetchAll(PDO::FETCH_ASSOC);
+        return $this->task->allForUser($userId);
     }
 
     public function findForUser(int $taskId, int $userId): ?array
     {
-        $statement = $this->pdo->prepare("
-            SELECT *
-            FROM tasks
-            WHERE id = :id
-              AND user_id = :user_id
-            LIMIT 1
-        ");
-
-        $statement->execute([
-            'id' => $taskId,
-            'user_id' => $userId,
-        ]);
-
-        $task = $statement->fetch(PDO::FETCH_ASSOC);
-
-        return $task ?: null;
+        return $this->task->findForUser($taskId, $userId);
     }
 
     public function create(int $userId, array $input): array
@@ -50,21 +24,9 @@ class TaskService
             return ['errors' => $errors, 'data' => $data];
         }
 
-        $statement = $this->pdo->prepare("
-            INSERT INTO tasks (title, description, priority, due_date, created_at, user_id)
-            VALUES (:title, :description, :priority, :due_date, :created_at, :user_id)
-        ");
+        $taskId = $this->task->create($userId, $data);
 
-        $statement->execute([
-            'title' => $data['title'],
-            'description' => $data['description'],
-            'priority' => $data['priority'],
-            'due_date' => $data['due_date'],
-            'created_at' => date('Y-m-d H:i:s'),
-            'user_id' => $userId,
-        ]);
-
-        return ['errors' => [], 'data' => $data];
+        return ['errors' => [], 'data' => $data, 'task_id' => $taskId];
     }
 
     public function update(int $taskId, int $userId, array $input): array
@@ -79,42 +41,14 @@ class TaskService
             return ['errors' => $errors, 'data' => $data];
         }
 
-        $statement = $this->pdo->prepare("
-            UPDATE tasks
-            SET title = :title,
-                description = :description,
-                priority = :priority,
-                due_date = :due_date
-            WHERE id = :id
-              AND user_id = :user_id
-        ");
-
-        $statement->execute([
-            'title' => $data['title'],
-            'description' => $data['description'],
-            'priority' => $data['priority'],
-            'due_date' => $data['due_date'],
-            'id' => $taskId,
-            'user_id' => $userId,
-        ]);
+        $this->task->update($taskId, $userId, $data);
 
         return ['errors' => [], 'data' => $data];
     }
 
     public function delete(int $taskId, int $userId): bool
     {
-        $statement = $this->pdo->prepare("
-            DELETE FROM tasks
-            WHERE id = :id
-              AND user_id = :user_id
-        ");
-
-        $statement->execute([
-            'id' => $taskId,
-            'user_id' => $userId,
-        ]);
-
-        return $statement->rowCount() > 0;
+        return $this->task->delete($taskId, $userId);
     }
 
     private function validate(array $input): array
