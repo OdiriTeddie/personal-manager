@@ -1,8 +1,9 @@
 <?php
 
 $errors = $_SESSION['errors'] ?? [];
-
 unset($_SESSION['errors']);
+$old = $_SESSION['old'] ?? [];
+unset($_SESSION['old']);
 
 ?>
 
@@ -51,7 +52,7 @@ unset($_SESSION['errors']);
                                 <path d="M20 21a8 8 0 0 0-16 0" />
                                 <circle cx="12" cy="7" r="4" />
                             </svg>
-                            <input id="full_name" name="full_name" type="text" autocomplete="full_name" placeholder="Jane Doe" class="h-full w-full border-0 bg-transparent text-sm text-slate-950 outline-none placeholder:text-slate-500">
+                            <input id="full_name" name="full_name" type="text" value="<?= htmlspecialchars($old['full_name'] ?? '') ?>" autocomplete="name" placeholder="Jane Doe" class="h-full w-full border-0 bg-transparent text-sm text-slate-950 outline-none placeholder:text-slate-500">
                         </div>
                     </div>
 
@@ -62,7 +63,7 @@ unset($_SESSION['errors']);
                                 <path d="M4 6h16v12H4z" />
                                 <path d="m4 7 8 6 8-6" />
                             </svg>
-                            <input id="email" name="email" type="email" autocomplete="email" placeholder="name@company.com" class="h-full w-full border-0 bg-transparent text-sm text-slate-950 outline-none placeholder:text-slate-500">
+                            <input id="email" name="email" type="email" value="<?= htmlspecialchars($old['email'] ?? '') ?>" autocomplete="email" placeholder="name@company.com" class="h-full w-full border-0 bg-transparent text-sm text-slate-950 outline-none placeholder:text-slate-500">
                         </div>
                     </div>
 

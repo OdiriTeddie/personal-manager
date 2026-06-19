@@ -9,6 +9,18 @@ if ($requestMethod === 'POST' && isset($_POST['_method'])) {
 }
 
 $taskController = null;
+$authController = null;
+
+if (in_array($uri, ['/login', '/register'], true)) {
+    require_once dirname($appPath) . '/config/database.php';
+    require_once $appPath . '/models/User.php';
+    require_once $appPath . '/services/AuthService.php';
+    require_once $appPath . '/controllers/AuthController.php';
+
+    $userModel = new User($pdo);
+    $authService = new AuthService($userModel);
+    $authController = new AuthController($authService, $appPath . '/views');
+}
 
 if (str_starts_with($uri, '/dashboard/tasks')) {
     require_once dirname($appPath) . '/config/database.php';
@@ -24,13 +36,13 @@ if (str_starts_with($uri, '/dashboard/tasks')) {
 if ($uri === '/') {
     require_once $appPath . '/views/home.php';
 } elseif ($uri === '/register' && $requestMethod === 'GET') {
-    require_once $appPath . '/views/auth/register.php';
+    $authController->showRegister();
 } elseif ($uri === '/register' && $requestMethod === 'POST') {
-    require_once $appPath . '/controllers/RegisterController.php';
+    $authController->register();
 } elseif ($uri === '/login' && $requestMethod === 'GET') {
-    require_once $appPath . '/views/auth/login.php';
+    $authController->showLogin();
 } elseif ($uri === '/login' && $requestMethod === 'POST') {
-    require_once $appPath . '/controllers/LoginController.php';
+    $authController->login();
 } elseif ($uri === '/dashboard') {
     require_once $appPath . '/views/dashboard.php';
 } elseif ($uri === '/dashboard/tasks') {
